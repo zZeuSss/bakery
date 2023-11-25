@@ -80,3 +80,18 @@ class OrderType(Base):
 
     id = Column(Integer, primary_key=True)
     type = Column(String)
+
+
+class Entity(Base):
+    __tablename__: str = 'entity'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+
+
+class EntityColumn(Base):
+    __tablename__: str = 'entity_column'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    alias = Column(String)

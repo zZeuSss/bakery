@@ -6,11 +6,12 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 SOURCE_DIR = os.path.dirname(os.path.abspath(__file__)) + '/source'
 
 PAGES = [
-    ('orders', 'Заказы'),
-    ('consumers', 'Заказчики'),
+    ('order', 'Заказы'),
+    ('consumer', 'Заказчики'),
     ('product', 'Позиции'),
     ('price', 'Цены'),
-    ('document', 'Накладные')
+    ('document', 'Накладные'),
+    ('result', 'Итог')
 ]
 
 PAGES_TABLE_HEADERS = {

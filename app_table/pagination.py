@@ -16,14 +16,8 @@ class Pagination(QWidget):
         end = QPushButton('>>')
         first = QPushButton('<<')
 
-        next.setFixedSize((QSize(40, 25)))
-        prev.setFixedSize((QSize(40, 25)))
-        end.setFixedSize((QSize(40, 25)))
-        first.setFixedSize((QSize(40, 25)))
-
         self.select = QComboBox(self)
 
-        self.select.setFixedSize(QSize(120, 25))
 
         self.setValues()
 

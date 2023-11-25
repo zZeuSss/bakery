@@ -1,10 +1,7 @@
 from sqlite3 import Connection
-from typing import Any, Sequence
 
-import pandas
 import sqlalchemy as db
-from pandas import DataFrame
-from sqlalchemy import Engine, MetaData, select
+from sqlalchemy import Engine, MetaData, select, text
 from sqlalchemy.orm import Session
 
 from data_base.models import Base
@@ -34,7 +31,7 @@ class DataBaseEngine:
 
     session = property(get_session, set_session)
 
-    def get_meta_data(self):
+    def get_meta_data(self) -> MetaData:
         return self._metadata
 
     def set_meta_data(self, metadata: MetaData):
@@ -42,22 +39,23 @@ class DataBaseEngine:
 
     metadata = property(get_meta_data, set_meta_data)
 
-    def get_data(self, table_name: str) -> DataFrame:
-        return pandas.read_sql(select(self._metadata.tables[table_name]), self._engine)
+
+    def get_columns(self, table_name:str):
+        return self._metadata.tables.get(table_name).columns
 
     def get(self, model: Base, id: str):
         return self._session.execute(
             select(
                 model,
             ).where(model.id == id)
-        ).all()[0]
+        ).first()
 
-    def list(self, model: Base, filter=None) -> Sequence[Any]:
+    def list(self, model: str, filter=None):
         return self._session.execute(
             select(
-                model
+                self._metadata.tables.get(model)
             )
-        ).scalars().all()
+        ).all()
 
     def update(self, model: Base):
         pass

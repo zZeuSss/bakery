@@ -1,33 +1,25 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QTableWidget, QTableView
 
-from app_table.filter import Filter
-from app_table.pagination import Pagination
-from views.row_editor import RowEditor
+from app_table.data_model import DataModel
+from data_base.db_engine import DataBaseEngine
 
 
-class Table(QWidget):
-
-    def __init__(self, table: QWidget = None,  *args, **kwargs):
+class Table(QTableView):
+    def __init__(self, table_name: str = None, db: DataBaseEngine = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        vlay = QVBoxLayout()
+        self.db = db
+        self.table_name = table_name
+        self.setModel(DataModel(data=self.getData(), columns=self.getColumns()))
 
-        hlay = QHBoxLayout()
+    def getData(self):
+        return self.db.list(self.table_name)
 
-        hlay.addWidget(Filter(self))
-        hlay.addWidget(RowEditor(self))
-        hlay.addWidget(Pagination(self))
-        vlay.addLayout(hlay)
+    def getColumns(self):
+        return self.db.get_columns(table_name=self.table_name)
 
-        vlay.addWidget(table)
 
-        self.setLayout(vlay)
-        self.show()
-
-    def add_empty_row(self):
-        pass
-
-    def update_row(self):
-        pass
+    def add_row(self):
+        self.insertRow(self.rowCount())
 
     def delete_row(self):
         pass
