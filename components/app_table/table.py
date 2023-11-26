@@ -6,17 +6,17 @@ from dataclass.table_config import TableConfig
 
 
 class Table(QTableView):
-    def __init__(self, table: TableConfig = None, db: DataBaseEngine = None, *args, **kwargs):
+    def __init__(self, table_name: str = None, db: DataBaseEngine = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.db = db
-        self.table = table
-        self.setModel(DataModel(data=self.getData(), columns=self.getColumns()))
+        self._table_name = table_name
+        self.setModel(DataModel(data=self.get_data(), columns=self.get_columns()))
 
-    def getData(self):
-        return self.db.list(self.table)
+    def get_data(self):
+        return self.db.list(self._table_name)
 
-    def getColumns(self):
-        return self.db.get_columns(table_name=self.table)
+    def get_columns(self):
+        return self.db.get_columns(self._table_name)
 
 
     def add_row(self):

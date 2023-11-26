@@ -36,7 +36,7 @@ class DataBaseEngine:
             if not is_pkg:
                 entity_module = importlib.import_module('.', module_name)
                 cls: Base = [cls for class_name, cls in inspect.getmembers(entity_module, inspect.isclass) if
-                       cls.__module__ == entity_module.__name__]
+                             cls.__module__ == entity_module.__name__]
                 self._entities.append(cls[0].__table__)
 
     def get_session(self):
@@ -55,9 +55,8 @@ class DataBaseEngine:
 
     metadata = property(get_meta_data, set_meta_data)
 
-    def get_columns(self, table_name:str):
+    def get_columns(self, table_name: str):
         return self._metadata.tables.get(table_name).columns
-
 
     def get(self, model: Base, id: str):
         return self._session.execute(

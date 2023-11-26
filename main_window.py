@@ -45,7 +45,7 @@ class MainWindow(QMainWindow, QtStyleTools):
 
 
     def load_window(self, *args):
-        self.Window = AppTable(table=args[0], db=self.db)
+        self.Window = AppTable(table_name=args[0], db=self.db)
         self.setCentralWidget(self.Window)
         self.show()
 

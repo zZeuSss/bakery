@@ -9,14 +9,14 @@ from dataclass.table_config import TableConfig
 
 class AppTable(QWidget):
 
-    def __init__(self, table: TableConfig = None, db: DataBaseEngine = None, *args, **kwargs):
+    def __init__(self, table_name: str = None, db: DataBaseEngine = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         v_lay = QVBoxLayout()
         h_lay = QHBoxLayout()
 
         self.row_editor = RowEditor(self)
         self.pagination = Pagination(self)
-        self.table = Table(table=table, db=db)
+        self.table = Table(table_name=table_name, db=db)
 
         self.row_editor.add_signal.data_changed.connect(self.add_empty_row)
 
