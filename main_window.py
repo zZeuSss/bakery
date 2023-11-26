@@ -1,19 +1,12 @@
 from functools import partial
-from typing import List
 
-import pandas as pd
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMainWindow, QToolBar, QAction, QTabWidget
+from PyQt5.QtWidgets import QMainWindow, QToolBar, QAction
 from qt_material import QtStyleTools
 
-from app_table.app_table import AppTable
-from app_table.table import Table
-from business.business import Calculate
+from components.app_table.app_table import AppTable
 from data_base.db_engine import DataBaseEngine
-from data_base.models import Product
 from config import PAGES
-from views.order_dialog import OrderDialog
-
 
 
 class MainWindow(QMainWindow, QtStyleTools):
@@ -52,7 +45,7 @@ class MainWindow(QMainWindow, QtStyleTools):
 
 
     def load_window(self, *args):
-        self.Window = AppTable(table_name=args[0], db=self.db)
+        self.Window = AppTable(table=args[0], db=self.db)
         self.setCentralWidget(self.Window)
         self.show()
 

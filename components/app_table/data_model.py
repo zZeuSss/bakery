@@ -12,7 +12,7 @@ class DataModel(QAbstractTableModel):
     def __init__(self, data: Row, columns: List[str], parent=None):
         QAbstractTableModel.__init__(self, parent)
         self._data = data
-        self._columns= columns
+        self._columns = columns
 
     def rowCount(self, parent=None):
         return len(self._data)

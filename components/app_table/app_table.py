@@ -1,21 +1,22 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QTableWidget
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout
 
-from app_table.pagination import Pagination
-from app_table.row import RowEditor
-from app_table.table import Table
+from components.app_table.pagination import Pagination
+from components.app_table.row import RowEditor
+from components.app_table.table import Table
 from data_base.db_engine import DataBaseEngine
+from dataclass.table_config import TableConfig
 
 
 class AppTable(QWidget):
 
-    def __init__(self, table_name: str = None, db: DataBaseEngine = None, *args, **kwargs):
+    def __init__(self, table: TableConfig = None, db: DataBaseEngine = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         v_lay = QVBoxLayout()
         h_lay = QHBoxLayout()
 
         self.row_editor = RowEditor(self)
         self.pagination = Pagination(self)
-        self.table = Table(table_name=table_name, db=db)
+        self.table = Table(table=table, db=db)
 
         self.row_editor.add_signal.data_changed.connect(self.add_empty_row)
 
