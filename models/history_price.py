@@ -1,6 +1,6 @@
 from sqlalchemy import Integer, Column, String, Float
 
-from data_base.db_engine import Base
+from database.db_engine import Base
 
 
 class HistoryPrice(Base):

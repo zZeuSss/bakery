@@ -1,5 +1,5 @@
 from sqlalchemy import Integer, Column, String
-from data_base.db_engine import Base
+from database.db_engine import Base
 
 
 class ConsumerRegion(Base):

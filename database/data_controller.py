@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QAbstractTableModel
 
-from data_base.data_model import DataModel
+from database.data_model import DataModel
 
 
 class DataController:

@@ -3,7 +3,7 @@ import sys
 
 from qt_material import apply_stylesheet
 
-from data_base.db_engine import DataBaseEngine
+from database.db_engine import DataBaseEngine
 from main_window import MainWindow
 
 # Create the application object

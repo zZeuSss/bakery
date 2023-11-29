@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QVBoxLayout, QLabel, QListWidget, QAbstractItemView, \
     QHBoxLayout, QListWidgetItem
 
-from data_base.db_engine import DataBaseEngine
-from data_base.models import Consumer
+from database.db_engine import DataBaseEngine
+from database.models import Consumer
 
 
 class OrderDialog(QDialog):

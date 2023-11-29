@@ -4,7 +4,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QToolBar, QAction
 from qt_material import QtStyleTools
 
-from data_base.db_engine import DataBaseEngine
+from database.db_engine import DataBaseEngine
 from dataclass.page import Page
 from enums.page_enum import PageEnum
 from views.table_view import TableView

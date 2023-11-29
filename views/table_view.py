@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout
 from components.table.component.pagination import Pagination
 from components.table.component.row import RowEditor
 from components.table.component.table import Table
-from data_base.data_controller import DataController
+from database.data_controller import DataController
 
 
 class TableView(QWidget):
