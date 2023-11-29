@@ -14,7 +14,7 @@ db = DataBaseEngine()
 db.create()
 
 # Create the form object
-window = MainWindow(db=db)
+window = MainWindow()
 
 # Set the form title
 window.setWindowTitle("bakery")

@@ -4,18 +4,19 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QMainWindow, QToolBar, QAction
 from qt_material import QtStyleTools
 
-from components.app_table.app_table import AppTable
 from data_base.db_engine import DataBaseEngine
 from dataclass.page import Page
 from enums.page_enum import PageEnum
+from views.table_view import TableView
 
 
 class MainWindow(QMainWindow, QtStyleTools):
     _toolbar: QToolBar = None
+    _db: DataBaseEngine = None
 
-    def __init__(self, db: DataBaseEngine = None):
+    def __init__(self):
         super(MainWindow, self).__init__()
-        self.db = db
+        # self._db = db
 
         self.resize(800, 600)
 
@@ -52,6 +53,6 @@ class MainWindow(QMainWindow, QtStyleTools):
         # self.setStyleSheet(pyqtcss.get_style("dark_orange"))
 
     def load_window(self, *args):
-        self.Window = AppTable(table_name=args[0], db=self.db)
+        self.Window = TableView(table_name=args[0])
         self.setCentralWidget(self.Window)
         self.show()

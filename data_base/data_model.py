@@ -6,9 +6,8 @@ from sqlalchemy import Row, Column
 
 class DataModel(QAbstractTableModel):
     """
-    Class to populate a table view with a pandas dataframe
+        Получает контроллер и работает с таблице
     """
-
     def __init__(self, data: List[Row], columns: List[Column], parent=None):
         QAbstractTableModel.__init__(self, parent)
         self._data: List[Row] = data
