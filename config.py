@@ -5,14 +5,6 @@ DB_TYPE_CONNECTION = 'sqlite'
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 SOURCE_DIR = os.path.dirname(os.path.abspath(__file__)) + '/source'
 
-PAGES = [
-    ('order', 'Заказы'),
-    ('consumer', 'Заказчики'),
-    ('product', 'Позиции'),
-    ('price', 'Цены'),
-    ('document', 'Накладные'),
-    ('result', 'Итог')
-]
 
 PAGES_TABLE_HEADERS = {
     'order': ['№', 'Наименование', 'Cумма', 'Счет', 'Комментарий'],
