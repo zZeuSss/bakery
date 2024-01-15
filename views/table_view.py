@@ -18,7 +18,7 @@ class TableView(QWidget):
 
         self.row_editor = RowEditor(self)
         self.pagination = Pagination(self)
-        self.table = Table()
+        self.table = Table(self._data_controller)
 
         self.row_editor.add_signal.data_changed.connect(self.add_empty_row)
 
@@ -32,10 +32,11 @@ class TableView(QWidget):
         self.show()
 
     def add_empty_row(self):
-        self.table.add_row()
-
-    def update_row(self):
         pass
-
-    def delete_row(self):
-        pass
+    #     self.table.add_row()
+    #
+    # def update_row(self):
+    #     pass
+    #
+    # def delete_row(self):
+    #     pass

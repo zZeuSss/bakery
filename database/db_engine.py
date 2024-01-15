@@ -2,7 +2,7 @@ import importlib
 import inspect
 import pkgutil
 from sqlite3 import Connection
-from typing import List
+from typing import List, Union
 
 import sqlalchemy as db
 from sqlalchemy import Engine, MetaData, select
@@ -12,6 +12,7 @@ from config import DB_TYPE_CONNECTION
 Base = declarative_base(metadata=MetaData())
 
 
+#SINGLETON
 class DataBaseEngine:
     _engine: Engine = None
     _conn: Connection = None
@@ -19,9 +20,17 @@ class DataBaseEngine:
     _session: Session = None
     _entities: List[Base] = []
 
+    _instance = None
+
+    def __new__(class_, *args, **kwargs):
+        if not isinstance(class_._instance, class_):
+            class_._instance = object.__new__(class_, *args, **kwargs)
+        return class_._instance
+
     def __init__(self, db_type: str = DB_TYPE_CONNECTION):
         self._engine = db.create_engine(f'{db_type}:///bakery.sqlite')
         self._conn = self._engine.connect()
+        self.create()
 
     def create(self):
         self.load_tables()
@@ -54,26 +63,3 @@ class DataBaseEngine:
         self._metadata = metadata
 
     metadata = property(get_meta_data, set_meta_data)
-
-    def get_columns(self, table_name: str):
-        return self._metadata.tables.get(table_name).columns
-
-    def get(self, model: Base, id: str):
-        return self._session.execute(
-            select(
-                model,
-            ).where(model.id == id)
-        ).first()
-
-    def list(self, model: str, filter=None, fields=None):
-        return self._session.execute(
-            select(
-                self._metadata.tables.get(model)
-            )
-        ).all()
-
-    def update(self, model: Base):
-        pass
-
-    def delete(self, model: Base):
-        pass
